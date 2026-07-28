@@ -764,6 +764,70 @@ a {
   width: 100%;
 }
 
+/* Screenshot preview */
+.project-card-image {
+  position: relative;
+  width: 100%;
+  height: 190px;
+  overflow: hidden;
+  background: rgba(10, 11, 14, 0.8);
+  order: -1;
+}
+
+.project-ss {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transition: transform 0.5s ease;
+  display: block;
+}
+
+.project-card:hover .project-ss {
+  transform: scale(1.05);
+}
+
+.project-ss-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background: linear-gradient(135deg, rgba(20,22,28,0.9), rgba(30,33,44,0.9));
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.project-ss-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-bottom: 1px solid var(--card-accent, var(--color-primary));
+}
+
+.project-ss-overlay svg {
+  color: var(--card-accent, var(--color-primary));
+}
+
+.project-card:hover .project-ss-overlay {
+  opacity: 1;
+}
+
 .project-card-body {
   padding: 1.8rem;
   display: flex;

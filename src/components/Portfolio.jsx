@@ -1,43 +1,49 @@
 import { useState } from 'react';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, Globe } from 'lucide-react';
+import portfolioV1Img from '../assets/portfolio_v1.png';
+import amazonImg from '../assets/amazon_clone.png';
+import vaultImg from '../assets/secure_vault.png';
 
-// 4 placeholder cards — user will add links & details later
 const projects = [
   {
     id: 1,
-    title: 'Project One',
-    desc: 'Description coming soon. Click "View Project" to visit the live link.',
+    title: 'Portfolio v1',
+    desc: 'My first personal portfolio website built with pure HTML, CSS & a touch of JavaScript. Features a smooth typing animation, skills section, and project showcase.',
     tags: ['HTML', 'CSS', 'JavaScript'],
     category: 'Web',
-    link: '#', // <-- Replace with your actual link
+    link: 'https://vivek-portfolio01.netlify.app/',
     color: '#8b5cf6',
+    image: portfolioV1Img,
   },
   {
     id: 2,
-    title: 'Project Two',
-    desc: 'Description coming soon. Click "View Project" to visit the live link.',
-    tags: ['Java'],
-    category: 'Java',
-    link: '#', // <-- Replace with your actual link
-    color: '#ec4899',
+    title: 'Amazon Clone',
+    desc: 'A pixel-perfect Amazon homepage clone built with HTML & CSS. Replicates the navbar, hero banner, and product grid layout from scratch.',
+    tags: ['HTML', 'CSS'],
+    category: 'Web',
+    link: 'https://ecomm-xp.netlify.app/',
+    color: '#f59e0b',
+    image: amazonImg,
   },
   {
     id: 3,
-    title: 'Project Three',
-    desc: 'Description coming soon. Click "View Project" to visit the live link.',
-    tags: ['Python', 'C++'],
-    category: 'Other',
-    link: '#', // <-- Replace with your actual link
+    title: 'Secure Data Vault',
+    desc: 'A responsive web app for securely storing and managing sensitive data entries. Built with HTML, CSS & JavaScript with a clean dark UI.',
+    tags: ['HTML', 'CSS', 'JavaScript'],
+    category: 'Web',
+    link: 'https://secure-data.netlify.app/',
     color: '#06b6d4',
+    image: vaultImg,
   },
   {
     id: 4,
-    title: 'Animation Web',
-    desc: 'A premium architectural showcase with GSAP-powered horizontal scroll animations, smooth transitions, and a glassmorphism dark-mode UI.',
+    title: 'Portfolio v2 (This Site)',
+    desc: 'A premium portfolio built with React & GSAP. Features horizontal scroll gallery, glassmorphism UI, smooth transitions, and dark-mode design.',
     tags: ['React', 'GSAP', 'Vite'],
     category: 'Web',
     link: 'https://github.com/vivekk-coder',
-    color: '#f59e0b',
+    color: '#ec4899',
+    image: null,
   },
 ];
 
@@ -60,7 +66,7 @@ export default function Portfolio() {
           Featured <span className="gradient-text">Projects</span>
         </h2>
         <p className="section-sub">
-          A collection of projects I've built. More coming soon!
+          A collection of projects I've built with HTML, CSS, JavaScript & React.
         </p>
       </div>
 
@@ -85,6 +91,33 @@ export default function Portfolio() {
             className="project-card"
             style={{ '--card-accent': project.color }}
           >
+            {/* Screenshot Preview */}
+            <div className="project-card-image">
+              {project.image ? (
+                <img
+                  src={project.image}
+                  alt={`${project.title} preview`}
+                  className="project-ss"
+                  loading="lazy"
+                />
+              ) : (
+                <div className="project-ss-placeholder">
+                  <Globe size={32} style={{ color: 'var(--card-accent)' }} />
+                  <span>Live Preview</span>
+                </div>
+              )}
+              {/* Overlay on hover */}
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="project-ss-overlay"
+              >
+                <ExternalLink size={20} />
+                <span>Visit Site</span>
+              </a>
+            </div>
+
             {/* Top accent bar */}
             <div className="project-card-bar" />
 
