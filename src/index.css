@@ -907,6 +907,201 @@ a {
 }
 
 /* =====================
+   COMING SOON CARD
+   ===================== */
+.coming-soon-card {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.1rem;
+  padding: 2.5rem 2rem;
+  min-height: 380px;
+  background: linear-gradient(
+    135deg,
+    rgba(168, 85, 247, 0.08) 0%,
+    rgba(20, 22, 28, 0.9) 50%,
+    rgba(168, 85, 247, 0.05) 100%
+  );
+  border-color: rgba(168, 85, 247, 0.25);
+  cursor: default;
+  text-align: center;
+}
+
+.coming-soon-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(168, 85, 247, 0.5);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4), 0 0 40px rgba(168, 85, 247, 0.12);
+}
+
+/* Animated glow orb behind */
+.cs-orb {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.18), transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: cs-orb-pulse 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes cs-orb-pulse {
+  0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+  50%       { opacity: 1;   transform: translate(-50%, -50%) scale(1.15); }
+}
+
+/* Pulsing rings */
+.cs-icon-wrap {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.cs-icon-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1.5px solid rgba(168, 85, 247, 0.4);
+  animation: cs-ring-expand 3s ease-out infinite;
+}
+
+.cs-ring-1 { width: 80px;  height: 80px;  animation-delay: 0s; }
+.cs-ring-2 { width: 80px;  height: 80px;  animation-delay: 1s; }
+.cs-ring-3 { width: 80px;  height: 80px;  animation-delay: 2s; }
+
+@keyframes cs-ring-expand {
+  0%   { transform: scale(1);    opacity: 0.8; }
+  100% { transform: scale(2.2);  opacity: 0; }
+}
+
+.cs-icon-center {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.25), rgba(168, 85, 247, 0.1));
+  border: 1.5px solid rgba(168, 85, 247, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #a855f7;
+  backdrop-filter: blur(8px);
+  z-index: 1;
+}
+
+/* Badge */
+.cs-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: linear-gradient(135deg, rgba(168,85,247,0.2), rgba(236,72,153,0.15));
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  color: #c084fc;
+  padding: 0.3rem 0.9rem;
+  border-radius: 9999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  z-index: 1;
+}
+
+.cs-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  z-index: 1;
+}
+
+/* Animated dots */
+.cs-subtitle {
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+  z-index: 1;
+}
+
+.cs-dots span {
+  display: inline-block;
+  animation: cs-dot-blink 1.4s infinite both;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.cs-dots span:nth-child(1) { animation-delay: 0s; }
+.cs-dots span:nth-child(2) { animation-delay: 0.2s; }
+.cs-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes cs-dot-blink {
+  0%, 80%, 100% { opacity: 0; transform: translateY(0); }
+  40%            { opacity: 1; transform: translateY(-4px); }
+}
+
+/* Hint tags */
+.cs-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  z-index: 1;
+}
+
+.cs-tag {
+  background: rgba(168, 85, 247, 0.08);
+  border: 1px dashed rgba(168, 85, 247, 0.3);
+  color: #a78bfa;
+  border-radius: 4px;
+  padding: 0.22rem 0.7rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+/* Progress bar */
+.cs-progress-wrap {
+  width: 100%;
+  max-width: 200px;
+  z-index: 1;
+}
+
+.cs-progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+}
+
+.cs-progress-track {
+  width: 100%;
+  height: 4px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.cs-progress-fill {
+  height: 100%;
+  width: 35%;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #a855f7, #ec4899);
+  animation: cs-progress-glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes cs-progress-glow {
+  from { box-shadow: 0 0 4px rgba(168, 85, 247, 0.4); }
+  to   { box-shadow: 0 0 12px rgba(168, 85, 247, 0.8); }
+}
+
+/* =====================
    CONTACT
    ===================== */
 .contact-section {
